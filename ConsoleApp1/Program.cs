@@ -14,10 +14,14 @@
                      Console.WriteLine(i);
                  }*/
 
-            int target = 8;
-            int[] nums = { 2, 3, 1, 2, 4, 3 };
-            SlidingWindow sW = new SlidingWindow();
-            int n = sW.MinSubArrary(target, nums);
+            /*   int target = 8;
+               int[] nums = { 2, 3, 1, 2, 4, 3 };
+               SlidingWindow sW = new SlidingWindow();
+               int n = sW.MinSubArrary(target, nums);*/
+            //nums = [13,23,12]
+            SumOfDigitDifferenceOfAllPairs sums = new SumOfDigitDifferenceOfAllPairs();
+            int[] nums = { 10, 10, 10,12 };
+            long n = sums.SumDigitDifferences(nums);
 
             Console.WriteLine(n);
 
