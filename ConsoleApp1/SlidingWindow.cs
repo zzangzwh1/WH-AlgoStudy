@@ -47,5 +47,71 @@ namespace ConsoleApp1
 
             return lengthOfArr == int.MaxValue ? 0 : lengthOfArr;
         }
+
+        /// <summary>
+        ///  Set 1: Sliding Window Maximum (Maximum of all subarrays of size k).
+        //  Given an array arr of size N and an integer K, the task is to find the maximum for each and every contiguous subarray of size K.
+        //
+        //   Examples: 
+        //
+        //   Input: arr[] = {1, 2, 3, 1, 4, 5, 2, 3, 6}, K = 3 
+        //   Output: 3 3 4 5 5 5 6 
+        //   All contiguous subarrays of size k are 
+        //   {1, 2, 3} => 3 
+        //   {2, 3, 1} => 3 
+        //   {3, 1, 4} => 4 
+        //   {1, 4, 5} => 5 
+        //   {4, 5, 2} => 5 
+        //   {5, 2, 3} => 5 
+        //   {2, 3, 6} => 6
+        //
+        //   Input: arr[] = {8, 5, 10, 7, 9, 4, 15, 12, 90, 13}, K = 4 
+        //   Output: 10 10 10 15 15 90 90  
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="k"></param>
+        public  void MaxOfAllSubArrary(int[] arr, int k)
+        {
+            if (k == 0)
+                return;
+            if(k == 1)
+            {
+                foreach(int index in arr)
+                {
+                    Console.WriteLine($"Max Index : {index}");
+                }
+            }
+            int start = 0;
+            int pivotStart = 0;
+            int end = k - 1;
+            int maxSum = arr[k - 1];
+
+            List<int> maxSubArrCollections = new List<int>();
+
+            while(end <= arr.Length-1)
+            {
+                if (arr[start] > maxSum)
+                    maxSum = arr[start];
+
+                start++;
+                if(start == end && end != arr.Length)
+                {
+                    maxSubArrCollections.Add(maxSum);
+                    end++;
+                    pivotStart++;
+                    start = pivotStart;
+                    if (end < arr.Length)
+                        maxSum = arr[end];
+
+                }
+
+            }
+            foreach(int n in maxSubArrCollections)
+            {
+                Console.WriteLine($"maxsum : {n}");
+            }
+
+
+        }
     }
 }
