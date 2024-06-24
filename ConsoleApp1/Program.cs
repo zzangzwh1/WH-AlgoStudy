@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Data.SqlTypes;
+using System.Diagnostics;
+using System.Text;
 
 namespace ConsoleApp1
 {
@@ -31,10 +33,19 @@ namespace ConsoleApp1
             int k = 3;
             Sw.MaxOfAllSubArrary(arr, k);
 
+            string result = "abcabcbbadgb";
+            // string test = longestUniqueSubsttr(result);
 
+            int test = Sw.LongestSubStr(result);
+
+
+
+
+            Console.WriteLine(test);
+          
             Console.ReadLine();
 
 
-        }
+        }  
     }
 }

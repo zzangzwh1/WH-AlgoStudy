@@ -113,5 +113,105 @@ namespace ConsoleApp1
 
 
         }
+        /// <summary>
+        /// Example 1:
+        //    Input: “ABCDEFGABEF”
+        //    Output: 7
+        //    Explanation: The longest substring without repeating characters are “ABCDEFG”, “BCDEFGA”, and “CDEFGAB” with lengths of 7
+        //
+        //    Example 2:
+        //    Input: “GEEKSFORGEEKS”
+        //    Output: 7
+        //    Explanation: The longest substrings without repeating characters are “EKSFORG” and “KSFORGE”, with lengths of 7
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string longestUniqueSubsttrBruceForce(string str)
+        {
+
+            // Result to store the maximum length of substring without repeating characters
+            int result = 0;
+
+            // Starting index of the longest substring
+            int start = 0;
+
+            // End index of the longest substring
+            int end = 0;
+
+            for (int i = 0; i < str.Length; i++)
+            {
+                // Boolean array to mark visited characters in the current window
+                bool[] visited = new bool[256];
+
+                // Inner loop to extend the window
+                for (int j = i; j < str.Length; j++)
+                {
+                    // If the current character is already visited, break the loop
+                    if (visited[str[j]] == true)
+                        break;
+
+                    // If not, update the result if the current window is larger
+                    // and mark the current character as visited
+                    else
+                    {
+                        if (j - i + 1 > result)
+                        {
+                            result = j - i + 1;
+                            start = i;
+                            end = j;
+                        }
+                        visited[str[j]] = true;
+                    }
+                }
+
+                // Remove the first character of the previous window
+                visited[str[i]] = false;
+            }
+
+            // Return the longest substring
+            return str.Substring(start, result);
+        }
+
+        public  int LongestSubStr(string sArr)
+        {
+            if (sArr.Length < 1)
+                return -1;
+            if (sArr.Length == 1)
+                return sArr.Length;
+
+            int start = 0;
+            int pivotStart = 0;
+
+            string result = "";
+            int max = 0;
+
+            List<string> resultStrings = new List<string>();
+
+            while (start < sArr.Length)
+            {
+                if (!result.Contains(sArr[start]))
+                {
+                    result += sArr[start];
+                    max = Math.Max(result.Length, max);
+                }
+                else
+                {
+                    resultStrings.Add(result);
+                    ++pivotStart;
+                    start = pivotStart;
+                    result = "";
+                }
+                start++;
+            }
+
+            for (int i = 0; i < resultStrings.Count; i++)
+            {
+                Console.WriteLine($"Result {i}: {resultStrings[i]}");
+
+            }
+
+            return max;
+        }
+
     }
 }
