@@ -212,6 +212,107 @@ namespace ConsoleApp1
 
             return max;
         }
+        /// <summary>
+        /// Input : X = “GeeksforGeeks”, y = “GeeksQuiz” 
+        //Output : 5 
+        //Explanation:
+        //The longest common substring is “Geeks” and is of length 5.
+        //
+        //Input : X = “abcdxyz”, y = “xyzabcd” 
+        //Output : 4 
+        //Explanation:
+        //The longest common substring is “abcd” and is of length 4.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        public int LongestCommonStr(string x, string y)
+        {
+            if (x.Length == 0 || y.Length == 0)
+                return -1;
+            int[,] dp = new int[x.Length + 1, y.Length + 1];
+            int maxLength = 0;
+            for(int i =1; i<=x.Length; i++)
+            {
+                for(int j = 1; j<=y.Length; j++)
+                {
+                    if (x[i - 1] == y[j - 1])
+                    {
+                        dp[i, j] = dp[i - 1, j - 1] + 1;
+
+                        maxLength = Math.Max(maxLength, dp[i, j]);
+                    }
+                    else
+                    {
+                        dp[i, j] = 0;
+                    }
+                    
+                }
+            }
+            return maxLength;
+
+        }
+        /// <summary>
+        /// Given an array of integers of size ‘n’, Our aim is to calculate the maximum sum of ‘k’ consecutive elements in the array.
+        /// //100,200,300,400,700,800,10000,200,100,50
+        /// </summary>
+        /// <param name="n">2</param>
+        /// <returns></returns>
+        public int FindMaxSubArr(int[] arr,int n)
+        {
+            if (arr.Length < n || n<=0)
+            {
+                return -1;
+            }
+            int currentSum = 0;
+           
+            for(int i =0; i<n; i++)
+            {
+                currentSum += arr[i];
+            }
+
+            int maxSum = currentSum;
+            for (int i = n; i<arr.Length; i++)
+            {
+                currentSum += arr[i] - arr[i - n];
+                maxSum = Math.Max(maxSum, currentSum);
+            }
+
+            return maxSum;
+
+        }
+        public void FindIndexOfSumArr(int[] arr,int sum)
+        {
+            int currentSum = 0;
+            int currentIndex = 0;
+            int firstIndex = 0;
+            int count = 1;
+            while (currentIndex <=arr.Length-1)
+            {
+               
+               
+                currentSum += arr[currentIndex];
+                currentIndex++;
+                firstIndex = count;
+                if(currentSum == sum)
+                {
+                    Console.WriteLine($"Sum of elements between indices {firstIndex} to {currentIndex}");
+                    return;
+                }
+                else if(currentSum > sum)
+                {
+                    count++;
+                    currentIndex = count-1;
+                    currentSum = 0;
+
+                }
+               
+                
+
+            }
+
+        }
+
 
     }
 }
