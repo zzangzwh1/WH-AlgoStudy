@@ -243,7 +243,7 @@ namespace ConsoleApp1
                         maxLength = Math.Max(maxLength, dp[i, j]);
                     }
                     else
-                    {
+                    { 
                         dp[i, j] = 0;
                     }
                     
