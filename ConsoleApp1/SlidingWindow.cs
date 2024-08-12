@@ -297,7 +297,7 @@ namespace ConsoleApp1
                 if(currentSum == sum)
                 {
                     Console.WriteLine($"Sum of elements between indices {firstIndex} to {currentIndex}");
-                    return;
+                    break;
                 }
                 else if(currentSum > sum)
                 {
@@ -311,6 +311,45 @@ namespace ConsoleApp1
 
             }
 
+        }
+        public void MaxOfSubArrays(int[] arr, int k)
+        {
+            if (arr.Length < k)
+                return;
+
+            int currentMax = 0;
+            int count = 0;
+            int currentIndex = 0;
+            int trackIndex = 0;
+            int test = 0;
+
+            List<int> maxCollections = new List<int>();      
+            while(currentIndex <arr.Length)
+            {
+                ++test;
+                currentMax = Math.Max(arr[currentIndex], currentMax);
+                currentIndex++;
+           
+                if (k == currentIndex)
+                {
+                   
+                    maxCollections.Add(currentMax);
+                    currentMax = 0;
+                    currentIndex = ++count;
+
+                }
+                if (count > 3)
+                    count = 0;
+               
+               
+
+            }
+            Console.WriteLine($"TEST : {test}");
+            foreach(int i in maxCollections)
+            {
+                Console.WriteLine(i);
+            }
+           
         }
 
 

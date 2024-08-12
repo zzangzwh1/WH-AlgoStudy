@@ -20,10 +20,13 @@ namespace ConsoleApp1
             window.FindIndexOfSumArr(findSubArr, sum);
 
 
+            int[] arr = { 1, 2, 3, 1, 4, 5, 2, 3, 6 };
+            int k = 3;
+            window.MaxOfSubArrays(arr, k);
             Console.ReadLine();
 
 
         }
-       
+
     }
 }
