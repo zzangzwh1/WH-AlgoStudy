@@ -32,6 +32,12 @@ namespace ConsoleApp1
             Sw.MaxOfAllSubArrary(arr, k);
 
 
+            int[] testArr = { 10, 5, 2, 7, 1, 9 };
+            int testK = 15;
+
+
+                Sw.LongestSubArr(testArr, testK);
+
             Console.ReadLine();
 
 

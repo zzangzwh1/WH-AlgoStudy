@@ -113,5 +113,42 @@ namespace ConsoleApp1
 
 
         }
+        /// <summary>
+        /// Given an array arr[] of size n containing integers. The problem is to find the length of the longest sub-array having sum equal to the given value k.
+
+         //Examples: 
+
+        //Input: arr[] = { 10, 5, 2, 7, 1, 9 }, k = 15
+        //Output: 4
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="k"></param>
+        public void LongestSubArr(int[] arr, int k)
+        {
+            int pivotStart = 0;
+            int start = 0;
+            int currentSum = 0;
+            int countSubArr = 0;
+            int total = 0;
+
+            while(start < arr.Length)
+            {
+                currentSum += arr[start];
+                countSubArr++;
+                start++;
+                if(currentSum == k)
+                {
+                    total = Math.Max(countSubArr, total);
+                    countSubArr = 0;
+                    currentSum = 0;
+                    start = ++pivotStart;
+                }
+                
+            }
+
+            Console.WriteLine($"Total Length : {total}");
+
+        }
+      
     }
 }
